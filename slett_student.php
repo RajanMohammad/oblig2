@@ -6,9 +6,11 @@ programmet sletter studenten når skjema er sendt inn
 */
 ?>
 
-<script src="funksjoner.js"> </script>
 <h2>Slett en student</h2>
 <form method="post" action="slett_student.php" onsubmit="return bekreftSletting();">  
+    <label for="brukernavn">Velg student å slette:</label>
+    <select name="brukernavn" id="brukernavn">
+    </select>
 </form>
 
 <?php
