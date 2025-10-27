@@ -5,7 +5,7 @@
     /*Programmet sletter klassen når skjema er sendt inn    
     */
 
-    <script src="funksjoner.js"></script>
+    ?>
 
     <h2>Slett en klasse</h2>
     <form method="post" action="slett_klasse.php" onsubmit="return bekreftSletting();">  
@@ -45,3 +45,4 @@
     }
     }
 ?>   
+
