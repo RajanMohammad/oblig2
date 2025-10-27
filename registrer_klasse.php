@@ -7,7 +7,7 @@
 ?>
 
 <h2>Registrer ny klasse</h2>
-<form method="post" action="registrer_klasse.php">  
+<form method="klasse" action="registrer_klasse.php">  
     <label for="klassekode">Klassekode:</label>
     <input type="text" id="klassekode" name="klassekode" required><br><br>
     
@@ -36,3 +36,4 @@ if (isset($_POST["klassekode"]))
     print ("Klassekode: $klassekode <br> Klassenavn: $klassenavn <br> Studiumkode: $studiumkode <br>");
 }
 ?>
+
