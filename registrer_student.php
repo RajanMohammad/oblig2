@@ -7,7 +7,7 @@
 ?>
 
 <h2>Registrer ny student</h2>
-<form method="post" action="registrer_student.php">  
+<form method="student" action="registrer_student.php">  
     <label for="brukernavn">Brukernavn:</label>
     <input type="text" id="brukernavn" name="brukernavn" required><br><br>
     
@@ -39,3 +39,4 @@ if (isset($_POST["brukernavn"]))
     print ("Brukernavn: $brukernavn <br> Fornavn: $fornavn <br> Etternavn: $etternavn <br> Klassekode: $klassekode <br>");
 }
 ?>
+
