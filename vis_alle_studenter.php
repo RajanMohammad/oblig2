@@ -19,7 +19,7 @@ print "<tr> <th> Studentnr </th> <th> Fornavn </th> <th> Etternavn </th> <th> Kl
 for ($r = 1; $r <= $sqlantallRader; $r++) 
     {
     $rad = mysqli_fetch_array($sqlResultat); /* ny rad hentet fra spørringsresultatet */
-    $studentnr = $rad["studentnr"]; /* eller studentnr = $rad[0]; */
+    $brukernavn = $rad["studentnr"]; /* eller studentnr = $rad[0]; */
     $fornavn = $rad["fornavn"]; /* eller fornavn = $rad[1]; */
     $etternavn = $rad["etternavn"]; /* eller etternavn = $rad[2]; */
     $klassekode = $rad["klassekode"]; /* eller klassekode = $rad[3]; */
