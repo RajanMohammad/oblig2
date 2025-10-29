@@ -18,7 +18,7 @@ for ($r = 1; $r <= $antallRader; $r++) {
     $rad = mysqli_fetch_array($sqlresultat); /* ny rad hentet fra sparringsresultatet */
     $klassekode = $rad["klassekode"]; /* eller klassekode = $rad[0]; */
     $klassenavn = $rad["klassenavn"]; /* eller klassenavn = $rad[1]; */
-$studiumkode = $rad["studiumkode"];
+    $studiumkode = $rad["studiumkode"]; /* eller studiumkode = $rad[2]; */
     print ("<tr> <td> $klassekode </td> <td> $klassenavn </td> <td> $studiumkode </td> </tr>");
 }
 print ("</table>");
