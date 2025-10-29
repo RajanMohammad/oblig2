@@ -1,5 +1,8 @@
 <meta charset="UTF-8">
-<?php
+<?php /* oblig2/vis_alle_klasser.php */
+/*
+/*Programmet viser alle klasser i databasen
+*/
 include ('db.php');
 
 $sqlsetning = "SELECT * FROM klasse order by klassekode;";
