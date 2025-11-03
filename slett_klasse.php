@@ -13,8 +13,10 @@
 
     <form method= "post" action""id="slettKlasseSkjema name="slettKlasseSkjema" onsubmit="return bekreft();">
     Emne <select name="klassekode" id="klassekode">
-    <?php print "<option value=''>Velg klassekode</option>";
+    <?php print "<option value=''>Velg klassekode</option>"; 
     include ("include dynamiske funksjoner.php"); listeboksKlassekoder(); ?>
+    </select> <br/>
+    <input type="submit" value="Slett klasse" name="slettKlassnavnKnapp" id="slettKlassekodeKnapp"
     </form>
 
     <?php
