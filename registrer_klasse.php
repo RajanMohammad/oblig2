@@ -7,7 +7,7 @@
 ?>
 
 <h2>Registrer ny klasse</h2>
-<form method="klasse" action="registrer_klasse.php">  
+<form method="post" action="registrer_klasse.php">  
     <label for="klassekode">Klassekode:</label>
     <input type="text" id="klassekode" name="klassekode" required><br><br>
     
@@ -21,19 +21,32 @@
 </form>
 
 <?php
-if (isset($_POST["klassekode"]))
-{ 
-    include ('db.php');
-    
-    $klassekode = mysqli_real_escape_string($db, $_POST["klassekode"]);
-    $klassenavn = mysqli_real_escape_string($db, $_POST["klassenavn"]);
-    $studiumkode = mysqli_real_escape_string($db, $_POST["studiumkode"]);
-    
-    $sqlsetning = "INSERT INTO klasse (klassekode, klassenavn, studiumkode) VALUES ('$klassekode', '$klassenavn', '$studiumkode');";
-    mysqli_query($db, $sqlsetning) or die ("Ikke mulig å registrere data i databasen");
-    
-    print ("<h2>Følgende klasse er nå registrert:</h2>");
-    print ("Klassekode: $klassekode <br> Klassenavn: $klassenavn <br> Studiumkode: $studiumkode <br>");
+if (isset($_POST ["klassekode"]))
+{
+$klassekode=$_POST ["klassekode"];
+$klassenavn=$_POST ["klassenavn"];
+$studiumkode=$_POST ["studiumkode"];
+if (!$klasskode || !$klassenavn || !$studiumkode)
+{
+print ("Alle felt m&aring; fylles ut");
+}
+else
+{
+include("oblig2/db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+$sqlSetning="SELECT * FROM emne WHERE klassekode='$klassekode';";
+$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+$antallRader=mysqli_num_rows($sqlResultat);
+if ($antallRader!=0) /* klassen er registrert fra før */
+{
+print ("Emnet er registrert fra f&oslashr");
+}
+else
+{
+$sqlSetning="INSERT INTO emne (klassekode,klassenavn,studiumkode)
+VALUES('$klassekode','$klassenavn','$studiumkode');";
+mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+print ("F&oslash;lgende emne er n&aring; registrert: $klassekode $klassenavn $studiumkode");
+}
+}
 }
 ?>
-
