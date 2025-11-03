@@ -16,7 +16,7 @@
     <?php print "<option value=''>Velg klassekode</option>"; 
     include ("include dynamiske funksjoner.php"); listeboksKlassekoder(); ?>
     </select> <br/>
-    <input type="submit" value="Slett klasse" name="slettKlassnavnKnapp" id="slettKlassekodeKnapp"
+    <input type="submit" value="Slett klasse" name="slettKlassnavnKnapp" id="slettKlassekodeKnapp">
     </form>
 
     <?php
