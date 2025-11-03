@@ -11,32 +11,32 @@
 
     <h2>Slett en klasse</h2>
 
-    <form method= "post" action=""id="slettKlasseSkjema name="slettKlasseSkjema" onsubmit="return bekreft();">
-    Emne <select name="klassekode" id="klassekode">
-    <?php print "<option value=''>Velg klassekode</option>"; 
-    include ("include dynamiske funksjoner.php"); listeboksKlassekoder(); ?>
-    </select> <br/>
-    <input type="submit" value="Slett klasse" name="slettKlassnavnKnapp" id="slettKlassekodeKnapp">
-    </form>
-
-    <?php
-    if (isset($_POST ["slettKlassekodeKnapp"]))
-    {
-    include ("db.php"); /* tilkobling til database-server utført og valg av database foretatt */
-
-    $klassekode=$_POST ["klassekode"];
-    if (!$klassekode)
-    {
-    print ("Det er ikke noe valgt");
-    }
-    else
-    {
-    include ('db.php'); /* tilkobling til database-server utført og valg av database foretatt */
-    $sqlsetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
-    mysqli_query($db, $sqlsetning) or die ("Ikke mulig å slette data fra databasen");
-    /* SQL-setning sendt til database-serveren */
-    print ("F&oslash;lgende klasse er n&aring; slettet: $klassekode <br>");
-    }
-    }
-    ?>
+   
+<form method="post" action="" id="slettKlasseSkjema" name="slettKlasseSkjema" onSubmit="return
+bekreft()">
+Emne <select name="klassekode" id="klassekode">
+<?php print("<option value=''>velg klasse </option>");
+include("dynamiske-funksjoner.php"); listeboksEmnekode(); ?>
+</select> <br/>
+<input type="submit" value="Slett emne" name="slettEmneKnapp" id="slettEmneKnapp" />
+</form>
+<?php
+if (isset($_POST ["slettKlasseKnapp"]))
+{
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+$klassekode=$_POST ["klassekode"];
+if (!$klassekode)
+{
+print ("Det er ikke valgt noe emne");
+}
+else
+{
+include("db-tilkobling.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+$sqlSetning="DELETE FROM emne WHERE klassekode='$klassekode';";
+mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
+/* SQL-setning sendt til database-serveren */
+print ("F&oslash;lgende emne er n&aring; slettet: $klassekode <br />");
+}
+}
+?>
 
