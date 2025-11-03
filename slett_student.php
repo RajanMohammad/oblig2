@@ -6,40 +6,32 @@ programmet sletter studenten når skjema er sendt inn
 */
 ?>
 
-<h2>Slett en student</h2>
-<form method="post" action="slett_student.php" onsubmit="return bekreftSletting();">  
-    <label for="brukernavn">Velg student å slette:</label>
-    <select name="brukernavn" id="brukernavn">
-    </select>
+<script src="funksjoner.js"> </script>
+
+<h2>Slett student</h2>
+<form method= "post" action=""id="slettStudentSkjema" name="slettStudentSkjema" onsubmit="return bekreft()">
+Student
+<select name="klassekode" id="klassekode">
+<?php print("<option value=''>velg student </option>");
+include("dynamiske-funksjoner.php"); listeboksStudentkode(); ?>
+</select> <br/>
+<input type="submit" value="Slett student" name="slettStudentKnapp" id="slettStudentKnapp" />
 </form>
-
 <?php
-if (isset($_POST["brukernavn"]))
-{ 
-$brukernavn=$_POST ["brukernavn"];
-if (!$brukernavn)
+if (isset($_POST ["slettStudentKnapp"]))
 {
-print ("brukernavn m&aring; fylles ut");
+$klassekode=$_POST ["klassekode"];
+if (!$klassekode)
+{
+print ("Det er ikke valgt noe student");
 }
 else
 {
-include ('db.php'); /* tilkobling til database-server utført og valg av database foretatt */
-
-$sqlsetning="DELETE FROM student WHERE brukernavn='$brukernavn';";
-$sqlresultat=mysqli_query($db, $sqlsetning) or die ("Ikke mulig &aring; å hente data fra databasen");
-$antallRader=mysqli_num_rows($sqlresultat);
-
-if ($antallRader==0) /* studenten er ikke registert  */
-{
-    print ("studenten finnes ikke i databasen");
-}
-else
-{
-$sqlsetning="DELETE FROM student WHERE brukernavn='$brukernavn';";
-mysqli_query($db, $sqlsetning) or die ("Ikke mulig å slette data fra databasen");
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+$sqlSetning="DELETE FROM student WHERE klassekode='$klassekode';";
+mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
 /* SQL-setning sendt til database-serveren */
-print ("F&oslash;lgende student er n&aring; slettet: $brukernavn <br>");
-}
+print ("F&oslash;lgende student er n&aring; slettet: $klassekode <br />");
 }
 }
 ?>
