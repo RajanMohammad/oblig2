@@ -26,7 +26,7 @@ if (isset($_POST ["klassekode"]))
 $klassekode=$_POST ["klassekode"];
 $klassenavn=$_POST ["klassenavn"];
 $studiumkode=$_POST ["studiumkode"];
-if (!$klasskode || !$klassenavn || !$studiumkode)
+if (!$klasskode !$klassenavn !$studiumkode)
 {
 print ("Alle felt m&aring; fylles ut");
 }
@@ -50,3 +50,4 @@ print ("F&oslash;lgende emne er n&aring; registrert: $klassekode $klassenavn $st
 }
 }
 ?>
+
