@@ -2,7 +2,7 @@
 /*
 /*  Programmet skriver ut alle registrerte klasser
 */
-  include ('db.php');  /* tilkobling til database-serveren utf�rt og valg av database foretatt */
+  include ("db.php");  /* tilkobling til database-serveren utf�rt og valg av database foretatt */
 
   $sqlSetning="SELECT * FROM 'klasse';";
   
@@ -27,3 +27,4 @@
     }
   print ("</table>"); 
 ?>
+
