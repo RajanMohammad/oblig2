@@ -11,7 +11,7 @@
 
     <h2>Slett en klasse</h2>
 
-    <form method= "post" action""id="slettKlasseSkjema name="slettKlasseSkjema" onsubmit="return bekreft();">
+    <form method= "post" action=""id="slettKlasseSkjema name="slettKlasseSkjema" onsubmit="return bekreft();">
     Emne <select name="klassekode" id="klassekode">
     <?php print "<option value=''>Velg klassekode</option>"; 
     include ("include dynamiske funksjoner.php"); listeboksKlassekoder(); ?>
