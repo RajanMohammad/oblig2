@@ -32,25 +32,24 @@ print ("Alle felt m&aring; fylles ut");
 }
 else
 {
-include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
-$sqlSetning="SELECT * FROM emne WHERE klassekode='$klassekode';";
+include("oblig2/db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+
+$sqlSetning="SELECT * FROM klasse WHERE klassekode='$klassekode';";
 $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
-$antallRader=mysqli_num_rows($sqlResultat);
+$antallRader=mysqli_num_rows($sqlResultat); /* antall rader i resultatet beregnet */
+
+
 if ($antallRader!=0) /* klassen er registrert fra før */
 {
 print ("Emnet er registrert fra f&oslashr");
 }
 else
 {
-$sqlSetning="INSERT INTO emne (klassekode,klassenavn,studiumkode)
+$sqlSetning="INSERT INTO klasse (klassekode,klassenavn,studiumkode)
 VALUES('$klassekode','$klassenavn','$studiumkode');";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
-print ("F&oslash;lgende emne er n&aring; registrert: $klassekode $klassenavn $studiumkode");
+print ("F&oslash;lgende klasse er n&aring; registrert: $klassekode $klassenavn $studiumkode");
 }
 }
 }
 ?>
-
-
-
-
