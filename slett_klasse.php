@@ -15,6 +15,7 @@
 <form method="post" id="slettKlasse" name="slettKlasse" onSubmit="return bekreft()">
     Velg klasse <select id="klasseKode" name="klasseKode" required>
         <?php $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
+        include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
 
@@ -31,7 +32,6 @@
 <?php
 if (isset($_POST ["slettKlasseKnapp"]))
 {
-include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
 
 $klassekode=$_POST ["klassekode"];
 
@@ -41,7 +41,7 @@ print ("Det er ikke valgt noe klasse");
 }
 else
 {
-    
+
 $sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
 /* SQL-setning sendt til database-serveren */
