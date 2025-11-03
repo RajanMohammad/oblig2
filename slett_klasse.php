@@ -41,7 +41,7 @@ print ("Det er ikke valgt noe klasse");
 }
 else
 {
-include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+    
 $sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
 /* SQL-setning sendt til database-serveren */
