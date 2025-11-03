@@ -1,3 +1,4 @@
+
 <?php /* oblig2/vis_alle_studenter.php */
 /*
 /*Programmet skriver ut alle registrerte studenter
@@ -14,7 +15,7 @@ $sqlantallRader = mysqli_num_rows($sqlResultat); /* antall rader i resultatet be
 
 print "<h2>Alle studenter</h2>";
 print "<table border='1'>";
-print "<tr> <th> Studentnr </th> <th> Fornavn </th> <th> Etternavn </th> <th> Klassekode </th> </tr>";
+print "<tr> <th> brukernavn </th> <th> Fornavn </th> <th> Etternavn </th> <th> Klassekode </th> </tr>";
 
 for ($r = 1; $r <= $sqlantallRader; $r++) 
     {
@@ -29,4 +30,3 @@ for ($r = 1; $r <= $sqlantallRader; $r++)
 
 print "</table>";
 ?>
-
