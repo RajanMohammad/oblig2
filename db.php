@@ -1,7 +1,11 @@
-<?php
-$host = getenv('ramoh0645');
-$username = getenv('ramoh0645');
-$password = getenv('abf8ramoh0645');
-$database = getenv('ramoh0645');
+<?php /* db-tilkobling */
+/*
+/* Programmet foretar tilkobling til database-server og valg av database
+*/
+$host = getenv('DB_HOST');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_DATABASE');
 $db=mysqli_connect($host,$username,$password,$database) or die ("ikke kontakt med database-server");
+/* tilkobling til database-serveren utført */
 ?>
