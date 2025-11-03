@@ -14,8 +14,7 @@
    
 <form method="post" id="slettKlasse" name="slettKlasse" onSubmit="return bekreft()">
     Velg klasse <select id="klasseKode" name="klasseKode" required>
-        <?php $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
-        include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+        <?php $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;"; include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
 
