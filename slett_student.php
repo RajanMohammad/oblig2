@@ -9,9 +9,10 @@ programmet sletter studenten når skjema er sendt inn
 <script src="funksjoner.js"> </script>
 
 <h2>Slett student</h2>
+
 <form method="post" id="slettStudent" name="slettStudent" onSubmit="return bekreft()">
-    Velg klasse <select id="brukernavn" name="brukernavn" required>
-        <?php $sqlSetning="SELECT * FROM student ORDER BY brukernavn;";
+    Velg student <select id="brukernavn" name="brukernavn" required>
+        <?php $sqlSetning="SELECT * FROM student ORDER BY brukernavn;"; include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
 
