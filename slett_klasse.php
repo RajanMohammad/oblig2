@@ -20,11 +20,11 @@
     </form>
 
     <?php
+    if (isset($_POST ["slettKlassekodeKnapp"]))
+    {
+    include ("db.php"); /* tilkobling til database-server utført og valg av database foretatt */
 
-    if (isset($_POST["SlettklassekodeKnapp"]))
-    { 
     $klassekode=$_POST ["klassekode"];
-
     if (!$klassekode)
     {
     print ("Det er ikke noe valgt");
@@ -32,10 +32,11 @@
     else
     {
     include ('db.php'); /* tilkobling til database-server utført og valg av database foretatt */
-    $sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
-    mysqli_query($db, $sqlSetning) or die ("Ikke mulig &aring; slette data fra databasen");
+    $sqlsetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
+    mysqli_query($db, $sqlsetning) or die ("Ikke mulig å slette data fra databasen");
     /* SQL-setning sendt til database-serveren */
     print ("F&oslash;lgende klasse er n&aring; slettet: $klassekode <br>");
     }
     }
     ?>
+
