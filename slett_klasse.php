@@ -12,14 +12,22 @@
     <h2>Slett en klasse</h2>
 
    
-<form method="post" action="" id="slettKlasseSkjema" name="slettKlasseSkjema" onSubmit="return
-bekreft()">
-Emne <select name="klassekode" id="klassekode">
-<?php print("<option value=''>velg klasse </option>");
-include("dynamiske-funksjoner.php"); listeboksKlassekode(); ?>
-</select> <br/>
-<input type="submit" value="Slett klasse" name="slettKlasseKnapp" id="slettKlasseKnapp" />
+<form method="post" id="slettKlasse" name="slettKlasse" onSubmit="return bekreft()">
+    Velg klasse <select id="klasseKode" name="klasseKode" required>
+        <?php $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
+        $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
+        $antallRader=mysqli_num_rows($sqlResultat);
+
+        for ($r=1;$r<=$antallRader;$r++) {
+            $rad=mysqli_fetch_array($sqlResultat);
+            $klasseKode=$rad["klassekode"];
+            print ("<option value='$klasseKode'>$klasseKode</option>");
+        }
+        ?>
+        </select><br>
+    <input type="submit" value="Slett klasse" id="slettklasseKnapp" name="slettklasseKnapp">
 </form>
+
 <?php
 if (isset($_POST ["slettKlasseKnapp"]))
 {
