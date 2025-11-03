@@ -29,12 +29,21 @@
 </form>
 
 <?php
-if (isset($_POST ["slettStudentKnapp"])) {
+if (isset($_POST ["slettklasseKnapp"])) {
 
-    $brukernavn=$_POST ["brukernavn"];
+    $klasseKode=$_POST ["klasseKode"];
 
-    $sqlSetning="DELETE FROM student WHERE brukernavn='$brukernavn';";
-    mysqli_query($db,$sqlSetning) or die ("kan ikke slette data i databsen");
-    print ("Studenten $fullnavn er nå slettet!");
+    $sqlSetning="SELECT * FROM student where klassekode='$klasseKode';";
+    $sqlResultat=mysqli_query($db,$sqlSetning);
+    $antallRader=mysqli_num_rows($sqlResultat);
+
+    if ($antallRader!=0) {
+        print("Det finnes fortsatt studenter i klassen $klasseKode. Klassen kan ikke slettes!");
+    }
+    else {
+        $sqlSetning="DELETE FROM klasse WHERE klassekode='$klasseKode';";
+        mysqli_query($db,$sqlSetning) or die ("kan ikke slette data i databsen");
+        print ("Klassen $klasseKode er nå slettet!");
+    }
 }
 ?>
