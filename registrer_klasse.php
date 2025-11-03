@@ -26,13 +26,13 @@ if (isset($_POST ["klassekode"]))
 $klassekode=$_POST ["klassekode"];
 $klassenavn=$_POST ["klassenavn"];
 $studiumkode=$_POST ["studiumkode"];
-if ($klasskode $klassenavn $studiumkode)
+if (!$klasskode || !$klassenavn || !$studiumkode)
 {
 print ("Alle felt m&aring; fylles ut");
 }
 else
 {
-include("oblig2/db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
 $sqlSetning="SELECT * FROM emne WHERE klassekode='$klassekode';";
 $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
 $antallRader=mysqli_num_rows($sqlResultat);
@@ -50,5 +50,6 @@ print ("F&oslash;lgende emne er n&aring; registrert: $klassekode $klassenavn $st
 }
 }
 ?>
+
 
 
