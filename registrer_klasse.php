@@ -32,7 +32,7 @@ print ("Alle felt m&aring; fylles ut");
 }
 else
 {
-include("oblig2/db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
 
 $sqlSetning="SELECT * FROM klasse WHERE klassekode='$klassekode';";
 $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
