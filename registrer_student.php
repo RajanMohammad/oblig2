@@ -7,7 +7,7 @@
 ?>
 
 <h2>Registrer ny student</h2>
-<form method="student" action="registrer_student.php">  
+<form method="post" action="registrer_student.php">  
     <label for="brukernavn">Brukernavn:</label>
     <input type="text" id="brukernavn" name="brukernavn" required><br><br>
     
@@ -22,21 +22,37 @@
     
     <input type="submit" value="Registrer student">
 </form>
+
 <?php
-if (isset($_POST["brukernavn"]))
-{ 
-    include ('db.php');
-    
-    $brukernavn = mysqli_real_escape_string($db, $_POST["brukernavn"]);
-    $fornavn = mysqli_real_escape_string($db, $_POST["fornavn"]);
-    $etternavn = mysqli_real_escape_string($db, $_POST["etternavn"]);
-    $klassekode = mysqli_real_escape_string($db, $_POST["klassekode"]);
-    
-    $sqlsetning = "INSERT INTO student (brukernavn, fornavn, etternavn, klassekode) VALUES ('$brukernavn', '$fornavn', '$etternavn', '$klassekode');";
-    mysqli_query($db, $sqlsetning) or die ("Ikke mulig å registrere data i databasen");
-    
-    print ("<h2>Følgende student er nå registrert:</h2>");
-    print ("Brukernavn: $brukernavn <br> Fornavn: $fornavn <br> Etternavn: $etternavn <br> Klassekode: $klassekode <br>");
+if (isset($_POST ["brukernavn"]))
+{
+$brukernavn=$_POST ["brukernavn"];
+$fornavn=$_POST ["fornavn"];
+$etternavn=$_POST ["etternavn"];
+$klassekode=$_POST ["klassekode"];
+
+if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode)
+{
+print ("Alle felt m&aring; fylles ut");
+}
+else
+{
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+$sqlSetning="SELECT * FROM student WHERE brukernavn='$brukernavn';";
+$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+$antallRader=mysqli_num_rows($sqlResultat); /* antall rader i resultatet beregnet */
+
+if ($antallRader!=0) /* studenten er registrert fra før */
+{
+print ("Studenten er registrert fra f&oslashr");
+}
+else
+{
+$sqlSetning="INSERT INTO student (brukernavn,fornavn,etternavn,klassekode)
+VALUES('$brukernavn','$fornavn','$etternavn','$klassekode');";
+mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $etternavn $klassekode");
+}
+}
 }
 ?>
-
