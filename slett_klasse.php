@@ -30,22 +30,12 @@
 </form>
 
 <?php
-if (isset($_POST ["slettKlasseKnapp"]))
-{
+if (isset($_POST ["slettStudentKnapp"])) {
 
-$klassekode=$_POST ["klassekode"];
+    $brukernavn=$_POST ["brukernavn"];
 
-if (!$klassekode)
-{
-print ("Det er ikke valgt noe klasse");
-}
-else
-{
-
-$sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
-mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
-/* SQL-setning sendt til database-serveren */
-print ("F&oslash;lgende klasse er n&aring; slettet: $klassekode <br />");
-}
+    $sqlSetning="DELETE FROM student WHERE brukernavn='$brukernavn';";
+    mysqli_query($db,$sqlSetning) or die ("kan ikke slette data i databsen");
+    print ("Studenten $fullnavn er nå slettet!");
 }
 ?>
