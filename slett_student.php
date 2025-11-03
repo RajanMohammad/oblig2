@@ -11,7 +11,7 @@ programmet sletter studenten når skjema er sendt inn
 <h2>Slett student</h2>
 <form method= "post" action=""id="slettStudentSkjema" name="slettStudentSkjema" onsubmit="return bekreft()">
 Student
-<select name="klassekode" id="klassekode">
+<select name="studentkode" id="studentkode">
 <?php print("<option value=''>velg student </option>");
 include("dynamiske-funksjoner.php"); listeboksStudentkode(); ?>
 </select> <br/>
@@ -20,18 +20,18 @@ include("dynamiske-funksjoner.php"); listeboksStudentkode(); ?>
 <?php
 if (isset($_POST ["slettStudentKnapp"]))
 {
-$klassekode=$_POST ["klassekode"];
-if (!$klassekode)
+$studentkode=$_POST ["studentkode"];
+if (!$studentkode)
 {
 print ("Det er ikke valgt noe student");
 }
 else
 {
 include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
-$sqlSetning="DELETE FROM student WHERE klassekode='$klassekode';";
+$sqlSetning="DELETE FROM student WHERE studentkode='$studentkode';";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
 /* SQL-setning sendt til database-serveren */
-print ("F&oslash;lgende student er n&aring; slettet: $klassekode <br />");
+print ("F&oslash;lgende student er n&aring; slettet: $studentkode <br />");
 }
 }
 ?>
