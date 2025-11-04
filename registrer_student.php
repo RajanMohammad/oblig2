@@ -44,16 +44,6 @@ $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente dat
 
 $antallRader=mysqli_num_rows($sqlResultat); /* antall rader i resultatet beregnet */
 
-for ($r=1;$r<=$antallRader;$r++)
-{
-    $rad=mysqli_fetch_array($sqlResultat); /* ny rad hentet fra resultatet */
-    $brukernavn=$rad["brukernavn"];
-    $fornavn=$rad["fornavn"];
-    $etternavn=$rad["etternavn"];
-    $klassekode=$rad["klassekode"];
-
-}
-
 if ($antallRader!=0) /* studenten er registrert fra før */
 {
 print ("Studenten er registrert fra f&oslashr");
@@ -69,3 +59,4 @@ print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $et
 }
 }
 ?>
+
