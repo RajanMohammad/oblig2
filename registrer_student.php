@@ -38,9 +38,21 @@ print ("Alle felt m&aring; fylles ut");
 else
 {
 include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+
 $sqlSetning="SELECT * FROM student WHERE brukernavn='$brukernavn';";
 $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+
 $antallRader=mysqli_num_rows($sqlResultat); /* antall rader i resultatet beregnet */
+
+for ($r=1;$r<=$antallRader;$r++)
+{
+    $rad=mysqli_fetch_array($sqlResultat); /* ny rad hentet fra resultatet */
+    $brukernavn=$rad["brukernavn"];
+    $fornavn=$rad["fornavn"];
+    $etternavn=$rad["etternavn"];
+    $klassekode=$rad["klassekode"];
+
+}
 
 if ($antallRader!=0) /* studenten er registrert fra før */
 {
@@ -51,6 +63,7 @@ else
 $sqlSetning="INSERT INTO student (brukernavn,fornavn,etternavn,klassekode)
 VALUES('$brukernavn','$fornavn','$etternavn','$klassekode');";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+/* SQL-setining sendt til database-serveren */
 print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $etternavn $klassekode");
 }
 }
