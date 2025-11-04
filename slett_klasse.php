@@ -24,8 +24,8 @@
 
         for ($r=1;$r<=$antallRader;$r++) {
             $rad=mysqli_fetch_array($sqlResultat);
-            $klasseKode=$rad["klassekode"];
-            print ("<option value='$klasseKode'>$klasseKode</option>");
+            $klassekode=$rad["klassekode"];
+            print ("<option value='$klassekode'>$klassekode</option>");
         }
         ?>
         </select><br>
@@ -35,20 +35,19 @@
 <?php
 if (isset($_POST ["slettklasseKnapp"])) {
 
-    $klasseKode=$_POST ["klasseKode"];
+    $klassekode=$_POST ["klasseKode"];
 
-    $sqlSetning="SELECT * FROM student where klassekode='$klasseKode';";
+    $sqlSetning="SELECT * FROM student where klassekode='$klassekode';";
     $sqlResultat=mysqli_query($db,$sqlSetning);
     $antallRader=mysqli_num_rows($sqlResultat);
 
     if ($antallRader!=0) {
-        print("Det finnes fortsatt studenter i klassen $klasseKode. Klassen kan ikke slettes!");
+        print("Det finnes fortsatt studenter i klassen $klassekode. Klassen kan ikke slettes!");
     }
     else {
-        $sqlSetning="DELETE FROM klasse WHERE klassekode='$klasseKode';";
+        $sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
         mysqli_query($db,$sqlSetning) or die ("kan ikke slette data i databsen");
-        print ("Klassen $klasseKode er nå slettet!");
+        print ("Klassen $klassekode er nå slettet!");
     }
 }
 ?>
-
