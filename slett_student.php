@@ -1,44 +1,72 @@
 <meta charset ="UTF-8">
-<?php /* oblig2/slett_student.php */
-/*
-programmet lager et skjema for sletting av en student fra databasen
-programmet sletter studenten når skjema er sendt inn    
+<?php /* oblig2/registrer_student.php */
+/* 
+/*Programmet lager et html-skjema for registrering av ny student i databasen
+/* Programmet registrerer studenten når skjema er sendt inn
 */
 ?>
 
-<script type="text/javascript">
-     function bekfreft() {
-        return confirm("Er du sikker?")
-     }
-</script>
-
-<h2>Slett student</h2>
-
-<form method="post" id="slettStudent" name="slettStudent" onSubmit="return bekreft()">
-    Velg student <select id="brukernavn" name="brukernavn" required>
-        <?php $sqlSetning="SELECT * FROM student ORDER BY brukernavn;"; include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+<h2>Registrer ny student</h2>
+<form method="post" action="registrer_student.php">  
+    <label for="brukernavn">Brukernavn:</label>
+    <input type="text" id="brukernavn" name="brukernavn" required><br><br>
+    
+    <label for="fornavn">Fornavn:</label>
+    <input type="text" id="fornavn" name="fornavn" required><br><br>
+    
+    <label for="etternavn">Etternavn:</label>
+    <input type="text" id="etternavn" name="etternavn" required><br><br>
+    
+        Klassekode <select id="klasseKode" name="klasseKode" required>
+        <?php 
+        $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
 
         for ($r=1;$r<=$antallRader;$r++) {
             $rad=mysqli_fetch_array($sqlResultat);
-            $brukernavn=$rad["brukernavn"];
-            $fullnavn = $rad["fornavn"] . " " . $rad["etternavn"];
-            print ("<option value='$brukernavn'>$brukernavn | $fullnavn</option>");
+            $klasseKode=$rad["klassekode"];
+            print ("<option value='$klasseKode'>$klasseKode</option>");
         }
         ?>
-        </select><br>
-    <input type="submit" value="Slett student" id="slettStudentKnapp" name="slettStudentKnapp">
+    </select><br>
+    
+    <input type="submit" value="Registrer student">
 </form>
 
 <?php
-if (isset($_POST ["slettStudentKnapp"])) {
+if (isset($_POST ["brukernavn"]))
+{
+$brukernavn=$_POST ["brukernavn"];
+$fornavn=$_POST ["fornavn"];
+$etternavn=$_POST ["etternavn"];
+$klassekode=$_POST ["klassekode"];
 
-    $brukernavn=$_POST ["brukernavn"];
+if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode)
+{
+print ("Alle felt m&aring; fylles ut");
+}
+else
+{
+include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
 
-    $sqlSetning="DELETE FROM student WHERE brukernavn='$brukernavn';";
-    mysqli_query($db,$sqlSetning) or die ("kan ikke slette data i databsen");
-    print ("Studenten $fullnavn er nå slettet!");
+$sqlSetning="SELECT * FROM student WHERE brukernavn='$brukernavn';";
+$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+
+$antallRader=mysqli_num_rows($sqlResultat); /* antall rader i resultatet beregnet */
+
+if ($antallRader!=0) /* studenten er registrert fra før */
+{
+print ("Studenten er registrert fra f&oslashr");
+}
+else
+{
+$sqlSetning="INSERT INTO student (brukernavn,fornavn,etternavn,klassekode)
+VALUES('$brukernavn','$fornavn','$etternavn','$klassekode');";
+mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+/* SQL-setining sendt til database-serveren */
+print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $etternavn $klassekode");
+}
+}
 }
 ?>
-
