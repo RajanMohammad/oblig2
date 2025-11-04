@@ -17,8 +17,19 @@
     <label for="etternavn">Etternavn:</label>
     <input type="text" id="etternavn" name="etternavn" required><br><br>
     
-    <label for="klassekode">Klassekode:</label>
-    <input type="text" id="klassekode" name="klassekode" required><br><br>
+        Klassekode <select id="klasseKode" name="klasseKode" required>
+        <?php 
+        $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
+        $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
+        $antallRader=mysqli_num_rows($sqlResultat);
+
+        for ($r=1;$r<=$antallRader;$r++) {
+            $rad=mysqli_fetch_array($sqlResultat);
+            $klasseKode=$rad["klassekode"];
+            print ("<option value='$klasseKode'>$klasseKode</option>");
+        }
+        ?>
+    </select><br>
     
     <input type="submit" value="Registrer student">
 </form>
@@ -59,6 +70,3 @@ print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $et
 }
 }
 ?>
-
-
-
