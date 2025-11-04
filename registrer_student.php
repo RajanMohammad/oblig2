@@ -19,7 +19,7 @@
     
     <label for="klassekode">Klassekode:</label>
     <input type="text" id="klassekode" name="klassekode" required><br><br>
-    <?php include("dynamiske-funksjoner.php"); listeboksStudent(); ?>
+    
     <input type="submit" value="Registrer student">
 </form>
 
@@ -59,5 +59,6 @@ print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $et
 }
 }
 ?>
+
 
 
