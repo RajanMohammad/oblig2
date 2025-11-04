@@ -6,7 +6,11 @@ programmet sletter studenten når skjema er sendt inn
 */
 ?>
 
-<script src="funksjoner.js"> </script>
+<script type="text/javascript">
+     function bekfreft() {
+        return confirm("Er du sikker?")
+     }
+</script>
 
 <h2>Slett student</h2>
 
@@ -37,3 +41,4 @@ if (isset($_POST ["slettStudentKnapp"])) {
     print ("Studenten $fullnavn er nå slettet!");
 }
 ?>
+
