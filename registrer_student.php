@@ -25,7 +25,7 @@
 
         for ($r=1;$r<=$antallRader;$r++) {
             $rad=mysqli_fetch_array($sqlResultat);
-            $klasseKode=$rad["klassekode"];
+            $klassekode=$rad["klassekode"];
             print ("<option value='$klasseKode'>$klasseKode</option>");
         }
         ?>
@@ -68,4 +68,5 @@ print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $et
 }
 }
 ?>
+
 
