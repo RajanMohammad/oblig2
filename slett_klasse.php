@@ -7,7 +7,11 @@
 
     ?>
 
-    <script src="funksjoner.js"></script>
+    <script type="text/javascript">
+     function bekfreft() {
+        return confirm("Er du sikker?")
+     }
+</script>
 
     <h2>Slett en klasse</h2>
 
@@ -47,3 +51,4 @@ if (isset($_POST ["slettklasseKnapp"])) {
     }
 }
 ?>
+
