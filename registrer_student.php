@@ -18,7 +18,7 @@
     <input type="text" id="etternavn" name="etternavn" required><br><br>
     
         Klassekode <select id="klasseKode" name="klasseKode" required>
-        <?php 
+        <?php include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
         $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
@@ -48,8 +48,6 @@ print ("Alle felt m&aring; fylles ut");
 }
 else
 {
-include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
-
 $sqlSetning="SELECT * FROM student WHERE brukernavn='$brukernavn';";
 $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
 
@@ -70,3 +68,4 @@ print ("F&oslash;lgende student er n&aring; registrert: $brukernavn $fornavn $et
 }
 }
 ?>
+
