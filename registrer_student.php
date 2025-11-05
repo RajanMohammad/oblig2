@@ -8,7 +8,7 @@
     Brukernavn <input type="text" id="brukernavn" name="brukernavn" required><br>
     Fornavn <input type="text" id="fornavn" name="fornavn" required><br>
     Etternavn <input type="text" id="etternavn" name="etternavn" required><br>
-    Klassekode <select id="klasseKode" name="klasseKode" required>
+    Klassekode <select id="klassekode" name="klassekode" required>
         <?php 
         $sqlSetning="SELECT * FROM klasse ORDER BY klassekode;";
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
@@ -16,8 +16,8 @@
 
         for ($r=1;$r<=$antallRader;$r++) {
             $rad=mysqli_fetch_array($sqlResultat);
-            $klasseKode=$rad["klassekode"];
-            print ("<option value='$klasseKode'>$klasseKode</option>");
+            $klassekode=$rad["klassekode"];
+            print ("<option value='$klassekode'>$klassekode</option>");
         }
         ?>
     </select><br>
@@ -33,9 +33,9 @@ if (isset($_POST ["regStudentKnapp"])) {
     $brukernavn=$_POST ["brukernavn"];
     $fornavn=$_POST ["fornavn"];
     $etternavn=$_POST ["etternavn"];
-    $klasseKode=$_POST ["klasseKode"];
+    $klassekode=$_POST ["klassekode"];
 
-    if (!$brukernavn  !$fornavn  !$etternavn || !$klasseKode) {
+    if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode) {
         print ("oops! Alle felt må fylles ut!");
     } 
     else
@@ -48,9 +48,9 @@ if (isset($_POST ["regStudentKnapp"])) {
         } 
         else {
             $sqlSetning="INSERT INTO student (brukernavn,fornavn,etternavn,klassekode)
-            VALUES('$brukernavn','$fornavn','$etternavn','$klasseKode');";
+            VALUES('$brukernavn','$fornavn','$etternavn','$klassekode');";
             mysqli_query($db,$sqlSetning) or die ("kan ikke registrere data i databasen");
-            print ("Følgende student er nå registrert: $brukernavn | $fornavn | $etternavn | $klasseKode");
+            print ("Følgende student er nå registrert: $brukernavn | $fornavn | $etternavn | $klassekode");
         }
     }
 }
