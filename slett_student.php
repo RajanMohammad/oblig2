@@ -1,22 +1,17 @@
-<meta charset ="UTF-8">
-<?php /* oblig2/slett_student.php */
-/*
-programmet lager et skjema for sletting av en student fra databasen
-programmet sletter studenten når skjema er sendt inn    
-*/
-?>
+<meta charset="UTF-8">
+<title>Sletting av student</title> 
 
+<h>Sletting av student</h>
+<?php include ("db.php"); ?>
 <script type="text/javascript">
-     function bekfreft() {
+    function bekreft() {
         return confirm("Er du sikker?")
-     }
+    }
 </script>
 
-<h2>Slett student</h2>
-
 <form method="post" id="slettStudent" name="slettStudent" onSubmit="return bekreft()">
-    Velg student <select id="brukernavn" name="brukernavn" required>
-        <?php $sqlSetning="SELECT * FROM student ORDER BY brukernavn;"; include("db.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
+    Velg klasse <select id="brukernavn" name="brukernavn" required>
+        <?php $sqlSetning="SELECT * FROM student ORDER BY brukernavn;";
         $sqlResultat=mysqli_query($db,$sqlSetning) or die ("kunne ikke hente data fra databasen");
         $antallRader=mysqli_num_rows($sqlResultat);
 
